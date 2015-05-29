@@ -1,3 +1,0 @@
-﻿CREATE LOGIN [ITLINFOSYS\Ruchira_Agarwal]
-    FROM WINDOWS WITH DEFAULT_LANGUAGE = [us_english];
-
