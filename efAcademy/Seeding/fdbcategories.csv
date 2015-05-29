@@ -1,0 +1,6 @@
+Code,Title,,
+Courseware,Courseware,,"insert into dbo.FdbCategories([Code], [Title]) values('Courseware', 'Courseware')"
+Logistics,Logistics,,"insert into dbo.FdbCategories([Code], [Title]) values('Logistics', 'Logistics')"
+Overall,Overall,,"insert into dbo.FdbCategories([Code], [Title]) values('Overall', 'Overall')"
+PlnSchedInfor,Planning and Scheduling,,"insert into dbo.FdbCategories([Code], [Title]) values('PlnSchedInfor', 'Planning and Scheduling')"
+Tutor,Tutor & Teaching,,"insert into dbo.FdbCategories([Code], [Title]) values('Tutor', 'Tutor & Teaching')"
