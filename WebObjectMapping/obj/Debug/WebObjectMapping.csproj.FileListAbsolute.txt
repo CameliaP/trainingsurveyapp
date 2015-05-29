@@ -24,3 +24,16 @@ D:\GitHub\trainingsurvey\WebObjectMapping\bin\Debug\System.Web.Http.WebHost.xml
 D:\GitHub\trainingsurvey\WebObjectMapping\obj\Debug\WebObjectMapping.dll
 D:\GitHub\trainingsurvey\WebObjectMapping\obj\Debug\WebObjectMapping.pdb
 D:\GitHub\trainingsurvey\WebObjectMapping\obj\Debug\WebObjectMapping.csprojResolveAssemblyReference.cache
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\WebObjectMapping.dll
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\WebObjectMapping.pdb
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\System.Net.Http.Formatting.dll
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\System.Web.Http.dll
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\System.Web.Http.WebHost.dll
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\Newtonsoft.Json.xml
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\System.Net.Http.Formatting.xml
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\System.Web.Http.xml
+D:\GitHub\CrackDataPots\WebObjectMapping\bin\Debug\System.Web.Http.WebHost.xml
+D:\GitHub\CrackDataPots\WebObjectMapping\obj\Debug\WebObjectMapping.csprojResolveAssemblyReference.cache
+D:\GitHub\CrackDataPots\WebObjectMapping\obj\Debug\WebObjectMapping.dll
+D:\GitHub\CrackDataPots\WebObjectMapping\obj\Debug\WebObjectMapping.pdb

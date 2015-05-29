@@ -64,6 +64,11 @@ namespace TrainingSurveyApi.Repository
         {
             //TODO: this returns the page number for the prev and the next despite having no pages around it. 
             List<WebUnit> result = new List<WebUnit>();
+            if (page <= 0)
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                    new ArgumentException("The page number cannot be zero or negative"));
+            }
             using (academyContext  db = new academyContext())
             {
                 //interim query
@@ -73,10 +78,18 @@ namespace TrainingSurveyApi.Repository
                 int totalPages = units.Count() % unitsPerPage == 0 ?
                     units.Count() / unitsPerPage :
                     (units.Count() / unitsPerPage) + 1;
-                string prevPage = page == 1 ? "" : new UrlHelper(request).Link("units", new { page = page - 1 });
-                string nextPage = page == totalPages ? "" : new UrlHelper(request).Link("units", new { page = page + 1 });
 
+                string prevPage = default(string);
+                string nextPage = default(string);
+                //only if the current page is within range
+                if (page > 1 && page<=totalPages +1) { 
+                    prevPage = new UrlHelper(request).Link("units", new { page = page - 1 });   
+                }
+                if (page >= 0 && page < totalPages) {
+                    nextPage = new UrlHelper(request).Link("units", new { page = page + 1 });
+                }
                 
+
                 units = units.OrderBy(x => x.Code).Skip((page - 1) * unitsPerPage).Take(unitsPerPage);
 
                 foreach (var u in units)
