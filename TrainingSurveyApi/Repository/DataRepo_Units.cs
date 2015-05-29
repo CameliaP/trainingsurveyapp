@@ -175,7 +175,7 @@ namespace TrainingSurveyApi.Repository
             using (academyContext db = new academyContext())
             {
                 if (db.Units.Where(x => x.Code == code).Count() == 0) { 
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest,
                         new ArgumentException("Code of the unit to delete not found")); }
                 db.Units.Remove(db.Units.Where(x => x.Code == code).FirstOrDefault());
                 try
