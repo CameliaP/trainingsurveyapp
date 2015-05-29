@@ -76,7 +76,7 @@ namespace TrainingSurveyApi.Repository
                 string prevPage = page == 1 ? "" : new UrlHelper(request).Link("units", new { page = page - 1 });
                 string nextPage = page == totalPages ? "" : new UrlHelper(request).Link("units", new { page = page + 1 });
 
-                //restult formation
+                
                 units = units.OrderBy(x => x.Code).Skip((page - 1) * unitsPerPage).Take(unitsPerPage);
 
                 foreach (var u in units)
