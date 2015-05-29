@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "feedbackapp", "http://localhost:5380/feedbackapp", "{63D95BCE-9537-48D6-B9D8-D0852AF2ED28}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "false"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/feedbackapp"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\Sites\webacademy\feedbackapp\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\feedbackapp\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/feedbackapp"
+		Release.AspNetCompiler.PhysicalPath = "..\..\Sites\webacademy\feedbackapp\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\feedbackapp\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\..\Sites\webacademy\feedbackapp\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0311942E-12D4-4BD2-AD01-C692F7F4EEF0}"
+	ProjectSection(SolutionItems) = preProject
+		WE-Markdown.css = WE-Markdown.css
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingSurveyApi", "TrainingSurveyApi\TrainingSurveyApi.csproj", "{AAABFAD9-6686-4C12-B235-8C0B5AF84A02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "efAcademy", "efAcademy\efAcademy.csproj", "{90A29FAE-F31F-49DD-8941-62C6EB8518B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "efAcademy.Tests", "efAcademy.Tests\efAcademy.Tests.csproj", "{C84DB46A-EB68-4D69-BC46-E43288107009}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ssdtAcademy", "ssdtAcademy\ssdtAcademy.sqlproj", "{59B511EF-0F46-4033-9057-C061B6A2B66C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebObjectMapping", "WebObjectMapping\WebObjectMapping.csproj", "{2601D3AF-8BFC-42B6-B001-D77C414AE787}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63D95BCE-9537-48D6-B9D8-D0852AF2ED28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D95BCE-9537-48D6-B9D8-D0852AF2ED28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D95BCE-9537-48D6-B9D8-D0852AF2ED28}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D95BCE-9537-48D6-B9D8-D0852AF2ED28}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{AAABFAD9-6686-4C12-B235-8C0B5AF84A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAABFAD9-6686-4C12-B235-8C0B5AF84A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAABFAD9-6686-4C12-B235-8C0B5AF84A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAABFAD9-6686-4C12-B235-8C0B5AF84A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90A29FAE-F31F-49DD-8941-62C6EB8518B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A29FAE-F31F-49DD-8941-62C6EB8518B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A29FAE-F31F-49DD-8941-62C6EB8518B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A29FAE-F31F-49DD-8941-62C6EB8518B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C84DB46A-EB68-4D69-BC46-E43288107009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C84DB46A-EB68-4D69-BC46-E43288107009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C84DB46A-EB68-4D69-BC46-E43288107009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C84DB46A-EB68-4D69-BC46-E43288107009}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B511EF-0F46-4033-9057-C061B6A2B66C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59B511EF-0F46-4033-9057-C061B6A2B66C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59B511EF-0F46-4033-9057-C061B6A2B66C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{59B511EF-0F46-4033-9057-C061B6A2B66C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59B511EF-0F46-4033-9057-C061B6A2B66C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59B511EF-0F46-4033-9057-C061B6A2B66C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2601D3AF-8BFC-42B6-B001-D77C414AE787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2601D3AF-8BFC-42B6-B001-D77C414AE787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2601D3AF-8BFC-42B6-B001-D77C414AE787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2601D3AF-8BFC-42B6-B001-D77C414AE787}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

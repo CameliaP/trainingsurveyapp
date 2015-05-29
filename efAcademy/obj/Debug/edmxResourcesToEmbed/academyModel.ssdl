@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AcademyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="__RefactorLog">
+    <Key>
+      <PropertyRef Name="OperationKey" />
+    </Key>
+    <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Alias" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Location_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Project_Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Role_Id" Type="int" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EmployeeTrainings">
+    <Key>
+      <PropertyRef Name="Employee_Id" />
+      <PropertyRef Name="Training_Id" />
+    </Key>
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
+    <Property Name="Training_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FeedbackOptionFeedbackQuestions">
+    <Key>
+      <PropertyRef Name="FeedbackOption_Id" />
+      <PropertyRef Name="FeedbackQuestion_Id" />
+    </Key>
+    <Property Name="FeedbackOption_Id" Type="int" Nullable="false" />
+    <Property Name="FeedbackQuestion_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FeedbackOptions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="255" />
+    <Property Name="SentimentValue" Type="int" Nullable="false" />
+    <Property Name="FeedbackSubmission_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="FeedbackQuestions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="255" />
+    <Property Name="Category_Code" Type="nvarchar" MaxLength="100" />
+    <Property Name="Feedback_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Feedbacks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Traning_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="FeedbackSubmissions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Employee_Id" Type="int" />
+    <Property Name="Feedback_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="FeedbakCategories">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'Academy.dbo.FromExcel' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="FromExcel">
+          <Property Name="Alias" Type="nvarchar" MaxLength="255" />
+          <Property Name="Id" Type="float" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Emp PU" Type="nvarchar" MaxLength="255" />
+          <Property Name="Emp DU" Type="nvarchar" MaxLength="255" />
+          <Property Name="BaseLocation" Type="nvarchar" MaxLength="255" />
+          <Property Name="Emp Base City" Type="nvarchar" MaxLength="255" />
+          <Property Name="Join Date" Type="datetime" />
+          <Property Name="RoleTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Emp Current Location" Type="nvarchar" MaxLength="255" />
+          <Property Name="Emp Current City" Type="nvarchar" MaxLength="255" />
+          <Property Name="DU Head for Emp DU" Type="float" />
+          <Property Name="DU Head Name for Emp DU" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Master Project Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project Practice Line" Type="nvarchar" MaxLength="255" />
+          <Property Name="Customer Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Master Customer Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Onsite/Offshore" Type="nvarchar" MaxLength="255" />
+          <Property Name="From Date" Type="datetime" />
+          <Property Name="To Date" Type="datetime" />
+          <Property Name="Allocated Country" Type="nvarchar" MaxLength="255" />
+          <Property Name="Allocated State" Type="nvarchar" MaxLength="255" />
+          <Property Name="Allocated City" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Billing Type" Type="nvarchar" MaxLength="255" />
+          <Property Name="Reporting To Emp No" Type="float" />
+          <Property Name="Reporting To Emp Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Reporting To Mail Id" Type="nvarchar" MaxLength="255" />
+          <Property Name="Proj Remarks" Type="nvarchar" MaxLength="255" />
+          <Property Name="Unit Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project DM " Type="float" />
+          <Property Name="Project DM MailID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Emp Exp In Infosys " Type="nvarchar" MaxLength="255" />
+          <Property Name="Emp Prev Exp " Type="nvarchar" MaxLength="255" />
+          <Property Name="Emp Total Exp" Type="nvarchar" MaxLength="255" />
+          <Property Name="Total Exp in Years" Type="float" />
+          <Property Name="Appl Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Service Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Activity Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tech Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tech Category" Type="nvarchar" MaxLength="255" />
+          <Property Name="Marketing Branch Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Proj DU Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project DU Head" Type="float" />
+          <Property Name="Project DUHead Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project SDM" Type="float" />
+          <Property Name="Project SDM MailId" Type="nvarchar" MaxLength="255" />
+          <Property Name="Proj DevCentre Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="HR Remarks" Type="nvarchar" MaxLength="255" />
+          <Property Name="Job Band" Type="smallint" />
+          <Property Name="Customer Portfolio" Type="nvarchar" MaxLength="255" />
+          <Property Name="PartTimeEmployee" Type="nvarchar" MaxLength="255" />
+          <Property Name="ProgramCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="TrackCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmployeeCompany" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employee Budgeting Unit" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project Budgeting Unit" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project Company" Type="nvarchar" MaxLength="255" />
+          <Property Name="Project Source Company" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employee Attribute" Type="nvarchar" MaxLength="255" />
+          <Property Name="Emp Date Of Birth" Type="datetime" />
+          <Property Name="Emp Gender" Type="nvarchar" MaxLength="255" />
+          <Property Name="Group Master Project Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employee Competency" Type="nvarchar" MaxLength="255" />
+          <Property Name="Talent Status" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employee Bench Type" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerCode" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+    <Property Name="Level" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Trainings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Start" Type="datetime" Nullable="false" />
+    <Property Name="End" Type="datetime" Nullable="false" />
+    <Property Name="Course_Code" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TutorTrainings">
+    <Key>
+      <PropertyRef Name="Tutor_Id" />
+      <PropertyRef Name="Training_Id" />
+    </Key>
+    <Property Name="Tutor_Id" Type="int" Nullable="false" />
+    <Property Name="Training_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_Employees_dbo_Locations_Location_Code">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Location_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Projects_Project_Code">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Project_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Roles_Role_Id">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_EmployeeTrainings_dbo_Employees_Employee_Id">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EmployeeTrainings" Type="Self.EmployeeTrainings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeTrainings">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_EmployeeTrainings_dbo_Trainings_Training_Id">
+    <End Role="Trainings" Type="Self.Trainings" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EmployeeTrainings" Type="Self.EmployeeTrainings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeTrainings">
+        <PropertyRef Name="Training_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FeedbackOptionFeedbackQuestions_dbo_FeedbackOptions_FeedbackOption_Id">
+    <End Role="FeedbackOptions" Type="Self.FeedbackOptions" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FeedbackOptionFeedbackQuestions" Type="Self.FeedbackOptionFeedbackQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeedbackOptions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackOptionFeedbackQuestions">
+        <PropertyRef Name="FeedbackOption_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FeedbackOptionFeedbackQuestions_dbo_FeedbackQuestions_FeedbackQuestion_Id">
+    <End Role="FeedbackQuestions" Type="Self.FeedbackQuestions" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FeedbackOptionFeedbackQuestions" Type="Self.FeedbackOptionFeedbackQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeedbackQuestions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackOptionFeedbackQuestions">
+        <PropertyRef Name="FeedbackQuestion_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FeedbackOptions_dbo_FeedbackSubmissions_FeedbackSubmission_Id">
+    <End Role="FeedbackSubmissions" Type="Self.FeedbackSubmissions" Multiplicity="0..1" />
+    <End Role="FeedbackOptions" Type="Self.FeedbackOptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeedbackSubmissions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackOptions">
+        <PropertyRef Name="FeedbackSubmission_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FeedbackQuestions_dbo_Feedbacks_Feedback_Id">
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="0..1" />
+    <End Role="FeedbackQuestions" Type="Self.FeedbackQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feedbacks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackQuestions">
+        <PropertyRef Name="Feedback_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FeedbackQuestions_dbo_FeedbakCategories_Category_Code">
+    <End Role="FeedbakCategories" Type="Self.FeedbakCategories" Multiplicity="0..1" />
+    <End Role="FeedbackQuestions" Type="Self.FeedbackQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeedbakCategories">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="FeedbackQuestions">
+        <PropertyRef Name="Category_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Feedbacks_dbo_Trainings_Traning_Id">
+    <End Role="Trainings" Type="Self.Trainings" Multiplicity="0..1" />
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Feedbacks">
+        <PropertyRef Name="Traning_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FeedbackSubmissions_dbo_Employees_Employee_Id">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="FeedbackSubmissions" Type="Self.FeedbackSubmissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackSubmissions">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_FeedbackSubmissions_dbo_Feedbacks_Feedback_Id">
+    <End Role="Feedbacks" Type="Self.Feedbacks" Multiplicity="0..1" />
+    <End Role="FeedbackSubmissions" Type="Self.FeedbackSubmissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feedbacks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedbackSubmissions">
+        <PropertyRef Name="Feedback_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Trainings_dbo_Courses_Course_Code">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+    <End Role="Trainings" Type="Self.Trainings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="Trainings">
+        <PropertyRef Name="Course_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TutorTrainings_dbo_Trainings_Training_Id">
+    <End Role="Trainings" Type="Self.Trainings" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TutorTrainings" Type="Self.TutorTrainings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TutorTrainings">
+        <PropertyRef Name="Training_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TutorTrainings_dbo_Tutors_Tutor_Id">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TutorTrainings" Type="Self.TutorTrainings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TutorTrainings">
+        <PropertyRef Name="Tutor_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AcademyModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeTrainings" EntityType="Self.EmployeeTrainings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedbackOptionFeedbackQuestions" EntityType="Self.FeedbackOptionFeedbackQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedbackOptions" EntityType="Self.FeedbackOptions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedbackQuestions" EntityType="Self.FeedbackQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedbacks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedbackSubmissions" EntityType="Self.FeedbackSubmissions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeedbakCategories" EntityType="Self.FeedbakCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trainings" EntityType="Self.Trainings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TutorTrainings" EntityType="Self.TutorTrainings" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_Employees_dbo_Locations_Location_Code" Association="Self.FK_dbo_Employees_dbo_Locations_Location_Code">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Projects_Project_Code" Association="Self.FK_dbo_Employees_dbo_Projects_Project_Code">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Roles_Role_Id" Association="Self.FK_dbo_Employees_dbo_Roles_Role_Id">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_EmployeeTrainings_dbo_Employees_Employee_Id" Association="Self.FK_dbo_EmployeeTrainings_dbo_Employees_Employee_Id">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="EmployeeTrainings" EntitySet="EmployeeTrainings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_EmployeeTrainings_dbo_Trainings_Training_Id" Association="Self.FK_dbo_EmployeeTrainings_dbo_Trainings_Training_Id">
+      <End Role="Trainings" EntitySet="Trainings" />
+      <End Role="EmployeeTrainings" EntitySet="EmployeeTrainings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FeedbackOptionFeedbackQuestions_dbo_FeedbackOptions_FeedbackOption_Id" Association="Self.FK_dbo_FeedbackOptionFeedbackQuestions_dbo_FeedbackOptions_FeedbackOption_Id">
+      <End Role="FeedbackOptions" EntitySet="FeedbackOptions" />
+      <End Role="FeedbackOptionFeedbackQuestions" EntitySet="FeedbackOptionFeedbackQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FeedbackOptionFeedbackQuestions_dbo_FeedbackQuestions_FeedbackQuestion_Id" Association="Self.FK_dbo_FeedbackOptionFeedbackQuestions_dbo_FeedbackQuestions_FeedbackQuestion_Id">
+      <End Role="FeedbackQuestions" EntitySet="FeedbackQuestions" />
+      <End Role="FeedbackOptionFeedbackQuestions" EntitySet="FeedbackOptionFeedbackQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FeedbackOptions_dbo_FeedbackSubmissions_FeedbackSubmission_Id" Association="Self.FK_dbo_FeedbackOptions_dbo_FeedbackSubmissions_FeedbackSubmission_Id">
+      <End Role="FeedbackSubmissions" EntitySet="FeedbackSubmissions" />
+      <End Role="FeedbackOptions" EntitySet="FeedbackOptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FeedbackQuestions_dbo_Feedbacks_Feedback_Id" Association="Self.FK_dbo_FeedbackQuestions_dbo_Feedbacks_Feedback_Id">
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+      <End Role="FeedbackQuestions" EntitySet="FeedbackQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FeedbackQuestions_dbo_FeedbakCategories_Category_Code" Association="Self.FK_dbo_FeedbackQuestions_dbo_FeedbakCategories_Category_Code">
+      <End Role="FeedbakCategories" EntitySet="FeedbakCategories" />
+      <End Role="FeedbackQuestions" EntitySet="FeedbackQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Feedbacks_dbo_Trainings_Traning_Id" Association="Self.FK_dbo_Feedbacks_dbo_Trainings_Traning_Id">
+      <End Role="Trainings" EntitySet="Trainings" />
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FeedbackSubmissions_dbo_Employees_Employee_Id" Association="Self.FK_dbo_FeedbackSubmissions_dbo_Employees_Employee_Id">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="FeedbackSubmissions" EntitySet="FeedbackSubmissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_FeedbackSubmissions_dbo_Feedbacks_Feedback_Id" Association="Self.FK_dbo_FeedbackSubmissions_dbo_Feedbacks_Feedback_Id">
+      <End Role="Feedbacks" EntitySet="Feedbacks" />
+      <End Role="FeedbackSubmissions" EntitySet="FeedbackSubmissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Trainings_dbo_Courses_Course_Code" Association="Self.FK_dbo_Trainings_dbo_Courses_Course_Code">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Trainings" EntitySet="Trainings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TutorTrainings_dbo_Trainings_Training_Id" Association="Self.FK_dbo_TutorTrainings_dbo_Trainings_Training_Id">
+      <End Role="Trainings" EntitySet="Trainings" />
+      <End Role="TutorTrainings" EntitySet="TutorTrainings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TutorTrainings_dbo_Tutors_Tutor_Id" Association="Self.FK_dbo_TutorTrainings_dbo_Tutors_Tutor_Id">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="TutorTrainings" EntitySet="TutorTrainings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
