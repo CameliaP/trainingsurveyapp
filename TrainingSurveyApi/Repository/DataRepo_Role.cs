@@ -59,15 +59,33 @@ namespace TrainingSurveyApi.Repository
         {
 
             List<WebRole> result = new List<WebRole>();
+            //Fix #13 for having invalid page number
+            if (page <= 0)
+            {
+                return request.CreateErrorResponse(
+                    HttpStatusCode.BadRequest,
+                    new ArgumentException(String.Format("page number cannot be zero or negative"))
+                    );
+            }
             using (academyContext db = new academyContext())
             {
                 try
                 {
                     var query = db.Roles;
                     UrlHelper urlHelper = new UrlHelper(request);
+
                     int totalPages = query.Count() % rolesPerPage == 0 ?
                         query.Count() / rolesPerPage :
                         (query.Count() / rolesPerPage) + 1;
+                    string prevPage = default(string);
+                    string nextPage = default(string);
+
+                    if (page > 1 && page <= totalPages + 1) {
+                        prevPage = urlHelper.Link("roles", new { page = page - 1 });                   
+                    }
+                    if (page >= 0 && page < totalPages) {
+                        nextPage = urlHelper.Link("roles", new { page = page + 1 });
+                    }
 
                     var roles = query.OrderBy(r => r.Title)
                         .Skip((page - 1) * rolesPerPage)
@@ -89,8 +107,8 @@ namespace TrainingSurveyApi.Repository
                        new
                        {
                            totalPages = totalPages,
-                           prevPage = page == 1 ? "" : urlHelper.Link("roles", new { page = page - 1 }),
-                           nextPage = page == totalPages ? "" : urlHelper.Link("roles", new { page = page + 1 }),
+                           prevPage = prevPage,
+                           nextPage = nextPage,
                            result = result
                        });
                 }
