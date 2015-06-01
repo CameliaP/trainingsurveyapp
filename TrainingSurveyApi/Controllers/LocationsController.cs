@@ -28,7 +28,7 @@ namespace TrainingSurveyApi.Controllers
 
         [HttpGet]
         [Route("{code}",Name="location")]
-        public IHttpActionResult OfCode(string code,int page ,bool exact = true){
+        public IHttpActionResult OfCode(string code,int page=1,bool exact = true){
             
             return exact ==true ? 
                 ResponseMessage(base.dataRepo.GETLocationOfCode(code)):
