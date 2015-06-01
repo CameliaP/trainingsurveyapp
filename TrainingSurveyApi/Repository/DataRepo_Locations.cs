@@ -35,7 +35,7 @@ namespace TrainingSurveyApi.Repository
                 int totalPages = locations.Count() % locationsPerPage == 0 ?
                     locations.Count() / locationsPerPage :
                     (locations.Count() / locationsPerPage) + 1;
-
+                //this would give the ahteoas links for those only when necessary
                 string prevPage = default(string);
                 string nextPage = default(string);
 
