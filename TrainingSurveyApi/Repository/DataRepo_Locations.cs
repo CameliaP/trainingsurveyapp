@@ -21,6 +21,13 @@ namespace TrainingSurveyApi.Repository
 
         internal HttpResponseMessage GETLocationsIndex(int page)
         {
+            if (page <= 0)
+            {
+                return request.CreateErrorResponse(
+                    HttpStatusCode.BadRequest,
+                    new ArgumentException("page number cannot be zero or negative")
+                    );
+            }
             List<WebLocation> result = new List<WebLocation>();
             using (academyContext db = new academyContext())
             {
@@ -28,8 +35,16 @@ namespace TrainingSurveyApi.Repository
                 int totalPages = locations.Count() % locationsPerPage == 0 ?
                     locations.Count() / locationsPerPage :
                     (locations.Count() / locationsPerPage) + 1;
-                string prevPage = page == 1 ? "" : new UrlHelper(request).Link("locations", new { page = page - 1 });
-                string nextPage = page == totalPages ? "" : new UrlHelper(request).Link("locations", new { page = page + 1 });
+
+                string prevPage = default(string);
+                string nextPage = default(string);
+
+                if (page > 1 && page <= totalPages +1) { 
+                    prevPage = new UrlHelper(request).Link("locations", new { page = page - 1 });
+                }
+                if (page >= 0 && page < totalPages) { 
+                    nextPage = new UrlHelper(request).Link("locations", new { page = page + 1 });
+                }
 
                 locations = locations.OrderBy(x => x.Code).Skip((page - 1) * locationsPerPage).Take(locationsPerPage);
 
