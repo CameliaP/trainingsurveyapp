@@ -28,17 +28,17 @@ namespace TrainingSurveyApi.Controllers
         }
 
         [HttpGet]
-        [Route("~/api/employees/{id}/project", Name="employeeToProject")]
-        public IHttpActionResult OfEmployee(int id)
-        {
-            return ResponseMessage(dataRepo.GETProjectOfEmployee(id));
-        }
-
-        [HttpGet]
         [Route("{code}", Name="project")]
         public IHttpActionResult OfCode(string code)
         {
             return ResponseMessage(dataRepo.GETProjectOfCode(code));
+        }
+
+        [HttpGet]
+        [Route("~/api/employees/{id}/project", Name="employeeToProject")]
+        public IHttpActionResult OfEmployee(int id)
+        {
+            return ResponseMessage(dataRepo.GETProjectOfEmployee(id));
         }
 
         [HttpPut]

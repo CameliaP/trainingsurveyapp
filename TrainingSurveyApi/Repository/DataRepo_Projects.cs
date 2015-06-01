@@ -21,6 +21,14 @@ namespace TrainingSurveyApi.Repository
 
         internal HttpResponseMessage GETProjectsIndex(int page)
         {
+
+            if (page <= 0)
+            {
+                return request.CreateErrorResponse(
+                    HttpStatusCode.BadRequest,
+                    new ArgumentException("Page number cannot be equal to or less than zero")
+                    );
+            }
             List<WebProject> result = new List<WebProject>();
             using (academyContext db = new academyContext())
             {
@@ -28,8 +36,16 @@ namespace TrainingSurveyApi.Repository
                 int totalPages = projects.Count() % projectsPerPage == 0 ?
                     projects.Count() / projectsPerPage :
                     (projects.Count() / projectsPerPage) + 1;
-                string prevPage = page == 1 ? "" : new UrlHelper(request).Link("projects", new { page = page - 1 });
-                string nextPage = page == totalPages ? "" : new UrlHelper(request).Link("projects", new { page = page + 1 });
+                
+                string prevPage = default(string);
+                string nextPage  = default(string);
+
+                if (page > 1 && page <= totalPages + 1) { 
+                    prevPage = new UrlHelper(request).Link("projects", new { page = page - 1 });
+                }
+                if (page >= 0 && page < totalPages) { 
+                    nextPage= new UrlHelper(request).Link("projects", new { page = page + 1 });
+                }
 
                 projects = projects.OrderBy(x => x.Code).Skip((page - 1) * projectsPerPage).Take(projectsPerPage);
 
