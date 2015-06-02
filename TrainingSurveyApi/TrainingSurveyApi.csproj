@@ -202,7 +202,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <None Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
@@ -220,6 +220,7 @@
     <Compile Include="Repository\DataRepo.cs" />
     <Compile Include="Repository\DataRepo_Locations.cs" />
     <Compile Include="Repository\DataRepo_Projects.cs" />
+    <Compile Include="Repository\DataRepo_Courses.cs" />
     <Compile Include="Repository\DataRepo_Units.cs" />
     <Compile Include="Repository\DataRepo_Employee.cs" />
     <Compile Include="Repository\DataRepo_Role.cs" />
