@@ -30,6 +30,12 @@ namespace TrainingSurveyApi.Controllers
         {
             return ResponseMessage(dataRepo.GETCourseOfCode(code));
         }
+        [HttpGet]
+        [Route("~/api/trainings/{id}/course", Name = "trainingToCourse")]
+        public IHttpActionResult OfTraining(int id) {
+            return ResponseMessage(dataRepo.GETCourseOfTraining(id));
+        }
+
         [HttpDelete]
         [Route("{code}")]
         public IHttpActionResult Delete(string code)
@@ -48,5 +54,7 @@ namespace TrainingSurveyApi.Controllers
         {
             return ResponseMessage(dataRepo.PUTCourse(toUpdate));
         }
+
+       
     }
 }

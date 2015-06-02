@@ -37,9 +37,5 @@ namespace TrainingSurveyApi.Repository
                 urlHelper = new UrlHelper(request);//setting the url helper
             }
         }
-
-
-
-
     }
 }

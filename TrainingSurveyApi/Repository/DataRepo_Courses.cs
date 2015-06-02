@@ -182,5 +182,36 @@ namespace TrainingSurveyApi.Repository
                 }
             }
         }
+
+        internal HttpResponseMessage GETCourseOfTraining(int id)
+        {
+            using (academyContext db = new academyContext())
+            {
+                var training = db.Trainings.Where(x => x.Id == id).FirstOrDefault();
+                if (training ==null)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                        new ArgumentException(String.Format("training with the id :{0} not found", id)));
+                }
+                Course c = training.Course;
+                if (c==null)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                        new ArgumentException("Requested  training does not have a course assigned"));
+                }
+                WebCourse wc = Mapping.ToWeb<Course, WebCourse>(c);
+                if (wc ==null)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                        new InvalidCastException("Serialization failed"));
+                }
+                wc =HateMapping.Map<WebCourse>(wc, request);
+                return request.CreateResponse(HttpStatusCode.OK,
+                    new
+                    {
+                        Results = wc
+                    });
+            }
+        }
     }
 }
