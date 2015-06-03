@@ -14,6 +14,7 @@ using WebObjectMapping.Attributes;
 
 namespace efAcademy.Seeding.Scripts
 {
+    
     public static class Cleanup
     {
         public static void Courses()
