@@ -29,6 +29,26 @@ namespace TrainingSurveyApi.Controllers
         public IHttpActionResult OfId(int id) {
             return ResponseMessage(dataRepo.GETTrainingOfId(id));
         }
+        [HttpGet]
+        [Route("~/api/courses/{code}/trainings", Name = "courseToTrainings")]
+        public IHttpActionResult OfId(string code) {
+            return ResponseMessage(dataRepo.GETTrainingsOfCourse(code));
+        }
+        [HttpGet]
+        [Route("~/api/questions/{id}/trainings", Name = "questionToTrainings")]
+        public IHttpActionResult OfQuestion(int id) {
+            return ResponseMessage(dataRepo.GETTrainingsForQuestion(id));
+        }
+        [HttpGet]
+        [Route("~/api/employees/{id}/trainings", Name = "employeeToTrainings")]
+        public IHttpActionResult AttendedByEmployee(int id) {
+            return ResponseMessage(dataRepo.GETTrainingsAttended(id));
+        }
+        [HttpGet]
+        [Route("~/api/tutors/{id}/trainings", Name = "tutorToTrainings")]
+        public IHttpActionResult AnchoredByTutor(int id) {
+            return ResponseMessage(dataRepo.GETTrainingsAnchored(id));
+        }
         [HttpPost]
         [Route("")]
         public IHttpActionResult Add(WebTraining toAdd) {

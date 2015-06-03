@@ -17,6 +17,113 @@ using System.Net;
 namespace TrainingSurveyApi.Repository {
     public sealed partial class DataRepo {
 
+        internal HttpResponseMessage GETTrainingsOfCourse(string code) {
+            List<WebTraining> result = new List<WebTraining>();
+            if (String.IsNullOrEmpty(code)) {
+                //invalid code for the course 
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                    new ArgumentException("code for the course cannnot be null or empty"));
+            }
+            using (academyContext db = new academyContext()) {
+                var course = db.Courses.Where(c => c.Code.ToLower() == code.ToLower())
+                    .FirstOrDefault();
+                if (course ==null) {
+                    //did not get the course with the code
+                     return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                    new ArgumentException("Course for the code :{0} not found", code));
+                }
+                foreach (var t in course.Trainings) {
+                    //web mapping an hateoas mapping
+                    WebTraining wt = Mapping.ToWeb<Training, WebTraining>(t);
+                    if (wt ==null) {
+                        return request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                            new IOException("Serialization failed"));
+                    }
+                    wt = HateMapping.Map<WebTraining>(wt, request);
+                    result.Add(wt);
+                }
+                //status ok, sending results
+                return request.CreateResponse(HttpStatusCode.OK,
+                    new {
+                        results = result
+                    });
+            }
+        }
+
+        internal HttpResponseMessage GETTrainingsForQuestion(int id) {
+            List<WebTraining> result = new List<WebTraining>();
+            using (academyContext db = new academyContext()) {
+                var question = db.FdbQuestions.Where(q => q.Id == id).FirstOrDefault();
+                if (question ==null) {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                        new ArgumentException(String.Format("quesiton with the id :{0} not found", id)));
+                }
+                foreach (var t in question.Trainings) {
+                    WebTraining wt = Mapping.ToWeb<Training, WebTraining>(t);
+                    if (wt == null) {
+                        return request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                            new IOException("Serialization failed"));
+                    }
+                    wt = HateMapping.Map<WebTraining>(wt, request);
+                    result.Add(wt);
+                }
+                //status ok, sending results
+                return request.CreateResponse(HttpStatusCode.OK,
+                    new {
+                        results = result
+                    });
+            }
+        }
+
+        internal HttpResponseMessage GETTrainingsAttended(int id) {
+            List<WebTraining> result = new List<WebTraining>();
+            using (academyContext db = new academyContext()) {
+                var employee = db.Employees.Where(e => e.Id == id).FirstOrDefault();
+                if (employee == null) {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                        new ArgumentException(String.Format("employee with the id :{0} not found", id)));
+                }
+                foreach (var t in employee.Attended) {
+                    WebTraining wt = Mapping.ToWeb<Training, WebTraining>(t);
+                    if (wt == null) {
+                        return request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                            new IOException("Serialization failed"));
+                    }
+                    wt = HateMapping.Map<WebTraining>(wt, request);
+                    result.Add(wt);
+                }
+                //status ok, sending results
+                return request.CreateResponse(HttpStatusCode.OK,
+                    new {
+                        results = result
+                    });
+            }
+        }
+
+        internal HttpResponseMessage GETTrainingsAnchored(int id) {
+            List<WebTraining> result = new List<WebTraining>();
+            using (academyContext db = new academyContext()) {
+                var tutor = db.Tutors.Where(e => e.Id == id).FirstOrDefault();
+                if (tutor == null) {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                        new ArgumentException(String.Format("tutor with the id :{0} not found", id)));
+                }
+                foreach (var t in tutor.Anchored) {
+                    WebTraining wt = Mapping.ToWeb<Training, WebTraining>(t);
+                    if (wt == null) {
+                        return request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                            new IOException("Serialization failed"));
+                    }
+                    wt = HateMapping.Map<WebTraining>(wt, request);
+                    result.Add(wt);
+                }
+                //status ok, sending results
+                return request.CreateResponse(HttpStatusCode.OK,
+                    new {
+                        results = result
+                    });
+            }
+        }
         internal HttpResponseMessage GETTrainingsIndex(int page) {
             //check for invalid page numbers
             if (page <= 0) {
