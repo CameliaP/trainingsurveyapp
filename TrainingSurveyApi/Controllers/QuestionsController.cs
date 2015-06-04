@@ -20,6 +20,21 @@ namespace TrainingSurveyApi.Controllers
     public class QuestionsController : BaseController
     {
         [HttpGet]
+        [Route("~/api/options/{id}/questions", Name="optionToQuestions")]
+        public IHttpActionResult OfOption(int id) {
+            return ResponseMessage(dataRepo.GETQuestionsOfOption(id));
+        }
+        [HttpGet]
+        [Route("~/api/categories/{code}/questions", Name = "categoryToQuestions")]
+        public IHttpActionResult OfCategory(string code) {
+            return ResponseMessage(dataRepo.GETQuestionsOfCategory(code));
+        }
+        [HttpGet]
+        [Route("~/api/reponses/{id}/question", Name ="responseToQuestion")]
+        public IHttpActionResult OfResponse(int id) {
+            return ResponseMessage(dataRepo.GETQuestionOfResponse(id));
+        }
+        [HttpGet]
         [Route("",Name="questions")]
         public IHttpActionResult Index(int page = 1){
            return ResponseMessage(dataRepo.GETQuestionsIndex(page));

@@ -16,8 +16,90 @@ using System.Net;
 
 namespace TrainingSurveyApi.Repository {
     public sealed partial class DataRepo {
-        
 
+
+        internal HttpResponseMessage GETQuestionsOfOption(int id) {
+            List<WebFdbQuestion> result = new List<WebFdbQuestion>();
+            using (academyContext db = new academyContext()) {
+                var option  = db.FdbOptions.Where(x=>x.Id ==id).FirstOrDefault();
+                if (option ==null){
+		            return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                        new ArgumentException(String.Format("option of the id :{0} not found", id)));
+	            }
+                foreach (var q in option.Questions){
+		            WebFdbQuestion wq = Mapping.ToWeb<FdbQuestion, WebFdbQuestion>(q);
+                    if (wq==null){
+		                return request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                            new IOException("failed to serizalixe"));
+	                }
+                    wq = HateMapping.Map<WebFdbQuestion>(wq, request);
+                    result.Add(wq);
+	            }
+                return request.CreateResponse(HttpStatusCode.OK,
+                    new {
+                        data = result
+                    });
+            }
+        }
+
+        internal HttpResponseMessage GETQuestionsOfCategory(string code) {
+            if (String.IsNullOrEmpty(code)) {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                    new ArgumentException("Category code cannot be null or empty"));
+            }
+            List<WebFdbQuestion> result = new List<WebFdbQuestion>();
+            using (academyContext db = new academyContext()) {
+                var category = db.FdbCategories.Where(x => 
+                    x.Code.ToLower() == code.ToLower()).FirstOrDefault();
+                if (category==null) {
+                    //no category of the given code
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                        new ArgumentException(String.Format("No category of the code :{0} found ", code)));
+                }
+                foreach (var q in category.Questions) {
+                     WebFdbQuestion wq = Mapping.ToWeb<FdbQuestion, WebFdbQuestion>(q);
+                    if (wq==null){
+		                return request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                            new IOException("failed to serizalixe"));
+	                }
+                    wq = HateMapping.Map<WebFdbQuestion>(wq, request);
+                    result.Add(wq);
+                } 
+                return request.CreateResponse(HttpStatusCode.OK,
+                    new {
+                        data = result
+                    });
+            }
+        }
+
+        internal HttpResponseMessage GETQuestionOfResponse(int id) {
+
+            WebFdbQuestion result = default(WebFdbQuestion);
+            using (academyContext db = new academyContext()) {
+
+                //getting the training with certain id
+                var response = db.FdbResponses.Select(x => x).Where(x => x.Id == id)
+                    .FirstOrDefault();
+                if (response == null) {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest,
+                        new ArgumentException(String.Format(
+                            "response of the id :{0} not found", id)));
+                }
+                //serialization compatible question
+                result = Mapping.ToWeb<FdbQuestion, WebFdbQuestion>(response.Question);
+                if (result == null) {
+                    return request.CreateErrorResponse(HttpStatusCode.InternalServerError,
+                        new InvalidCastException("failed to serialize the object"));
+                }
+                result = HateMapping.Map<WebFdbQuestion>(result, request);
+
+                //check to see if training is nothing
+                return request.CreateResponse(HttpStatusCode.OK,
+                    new {
+                        results = result
+                    });
+            }
+        }
 
         internal HttpResponseMessage GETQuestionsIndex(int page) {
             //check for invalid page numbers
