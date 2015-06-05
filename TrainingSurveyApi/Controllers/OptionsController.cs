@@ -43,7 +43,7 @@ namespace TrainingSurveyApi.Controllers
         }
 
         [HttpDelete]
-        [Route("")]
+        [Route("{id:int}")]
         public IHttpActionResult Delete(int id){
             return ResponseMessage(base.dataRepo.DELETEOption(id));
         }
