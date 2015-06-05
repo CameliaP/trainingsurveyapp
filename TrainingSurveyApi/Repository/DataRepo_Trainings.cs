@@ -139,7 +139,7 @@ namespace TrainingSurveyApi.Repository {
                     (trainings.Count() / trainingsPerPage) + 1;
                 string prev = default(string);
                 string next = default(string);
-                if (page > 1 && page < totalPages + 1) {
+                if (page > 1 && page <= totalPages + 1) {
                     prev = new UrlHelper(request).Link("trainings", new { page = page - 1 });
                 }
                 if (page >= 1 && page < totalPages) {
