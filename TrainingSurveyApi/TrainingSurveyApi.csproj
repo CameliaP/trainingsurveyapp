@@ -210,6 +210,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
+    <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\UnitsController.cs" />
     <Compile Include="Filters\RepoReqIocFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -224,6 +225,7 @@
     <Compile Include="Repository\DataRepo_Courses.cs" />
     <Compile Include="Repository\DataRepo_Questions.cs" />
     <Compile Include="Repository\DataRepo_Trainings.cs" />
+    <Compile Include="Repository\Datarepo_Options.cs" />
     <Compile Include="Repository\DataRepo_Units.cs" />
     <Compile Include="Repository\DataRepo_Employee.cs" />
     <Compile Include="Repository\DataRepo_Role.cs" />

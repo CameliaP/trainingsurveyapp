@@ -26,7 +26,9 @@ namespace TrainingSurveyApi.Repository
         protected const int projectsPerPage = 20;
         protected const int coursesPerPage=20;
         protected const int trainingsPerPage = 20;
-         protected const int questionsPerPage=20;
+        protected const int questionsPerPage=20;
+        protected const int optionsPerPage = 20;
+
         protected HttpRequestMessage request;
         protected UrlHelper urlHelper;
 
@@ -38,7 +40,6 @@ namespace TrainingSurveyApi.Repository
                 urlHelper = new UrlHelper(request);//setting the url helper
             }
         }
-
 
 
 
